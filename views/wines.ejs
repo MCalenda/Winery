@@ -1,0 +1,240 @@
+<!-- wines.ejs -->
+<!DOCTYPE html>
+<html lang="it" class="h-100" >
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <title>Winery</title>
+  </head>
+  <body class="h-100 m-0" style="background-color:#824c71;">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col sticky-top vh-100 d-flex align-items-center" style="background-color:#824c71; border-style: solid; border-width: 0 5px 0 0; border-color: #ffe18f;">
+          <nav class= "w-100">
+            <div class = "fw-bold text-center" style="color:#ffe18f;">
+              <p style="font-size: 42px;">Query Builder</p>
+              <p style="font-size: 24px;">I'm looking for...</p>
+            </div>
+            <div>
+              <form action="/query" method="POST" style="font-size: 18px; color:#dccca3;">
+                <div class="ms-5 form-check">
+                  <input class="form-check-input" id ="radioRed" type="radio" name="tipology" value="red" required>
+                  <label class="form-check-label" for="radioRed">Red</label><br>
+                  <input class="form-check-input" id ="radioWhite" type="radio" name="tipology" value="white">
+                  <label class="form-check-label" for="radioWhite">White</label><br>
+                  <input class="form-check-input" id ="radioRose"type="radio" name="tipology" value="rose">
+                  <label class="form-check-label" for="radioRose">Rose</label><br>
+                  <input class="form-check-input" id ="radioSparkling" type="radio" name="tipology" value="sparkling">
+                  <label class="form-check-label" for="radioSparkling">Sparkling</label><br>
+                  <input class="form-check-input" id ="radioAll" type="radio" name="tipology" value="all">
+                  <label class="form-check-label" for="radioAll">All</label><br>
+                </div>
+                <br>
+                <p class = "text-center fw-bold" style="font-size: 24px; color: #ffe18f;">with...</p>
+                <div class="ms-5 form-check">
+                  <input class="form-check-input" id="radioRating" type="radio" name="field" value="Rating" required>
+                  <label class="form-check-label" for="radioRating">Rating</label><br>
+                  <input class="form-check-input" id="radioPrice" type="radio" name="field" value="Price">
+                  <label class="form-check-label" for="radioPrice">Price</label><br>
+                  <input class="form-check-input" id="radioYear" type="radio" name="field" value="Year">
+                  <label class="form-check-label" for="radioYear">Year</label>
+                </div>
+                <br><br>
+                <div class="ms-5 form-check">
+                  <input class="form-check-input" id="radioLess" type="radio" name="query_type" value="less" required>
+                  <label class="form-check-label" for="radioLess" >Less than</label><br>
+                  <input class="form-check-input" id="radioMore" type="radio" name="query_type" value="more">
+                  <label class="form-check-label" for="radioMore">More than</label><br>
+                  <input class="form-check-input" id="radioEqual" type="radio" name="query_type" value="equal">
+                  <label class="form-check-label" for="radioEqual">Equal to</label>
+                </div>
+                <br>
+                <div class= "text-center">
+                  <input type="text" class="form-control-sm" name="value">
+                  <input class="rounded p-2 mx-2" type="submit" value="Query" style="background-color: #4a2545 ; color: #ffe18f;">
+                </div>
+              </form>
+            </div>
+            <br>
+            <div class="text-center" style="margin-top: 30%;">
+              <a class="fw-bold text-decoration-none" href="/topCountry" style="font-size: 18px; color:#ffe18f;">Most popular countries</a><br>
+              <a class="fw-bold text-decoration-none" href="/topOrigins" style="font-size: 18px; color:#ffe18f;">Most popular regions</a><br>
+              <a class="fw-bold text-decoration-none" href="/topWines" style="font-size: 18px; color:#ffe18f;">Wines Hall of Fame</a><br>
+            </div>
+          </nav>
+        </div>
+        <div class="col-10 p-0">
+          <nav class="navbar navbar-expand-lg p-0" style="z-index:1; background-color:#4a2545;">
+            <div class="collapse navbar-collapse justify-content-md-center py-2" style="font-size: 18px;">
+              <ul class="navbar-nav align-middle fw-bold">
+                <li class="nav-item">
+                  <a class="nav-link" style="color:#ffe18f;" href="/" >Home</a>
+                </li>
+                <li class="nav-item mx-3">
+                  <form method="POST" action="/search" class="form-inline">
+                    <input name="name" class="form-control text-center" type="search" placeholder="Search by name..." aria-label="Search" style="color:#4a2545 ;">
+                  </form>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle " href=""  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ffe18f;">Tipology</a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown10" style="background-color:#4a2545;">
+                    <a class="dropdown-item" style="color:#ffe18f;" href="/red">Red</a>
+                    <a class="dropdown-item" style="color:#ffe18f;" href="/white">White</a>
+                    <a class="dropdown-item" style="color:#ffe18f;" href="/rose">Rose</a>
+                    <a class="dropdown-item" style="color:#ffe18f;" href="/sparkling">Sparkling</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <table id = "sortTable" class="table table-hover table-striped text-center" style="background-color:#dccca3;">
+            <thead class="sticky-top fw-bold" style="z-index:0; background-color:#824c71; color: #ffe18f; font-size: 18px;">
+              <tr>
+                <th onclick="sortTable(0)" scope="col">Name</th>
+                <th onclick="sortTable(1)" scope="col">Tipology</th>
+                <th onclick="sortTable(2)" scope="col">Origin</th>
+                <th scope="col">Popularity</th>
+                <th onclick="sortTable(4)" scope="col">Rating</th>
+                <th scope="col">Price</th>
+                <th scope="col">Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i = 0; i < wines.length; i++) {%>
+              <tr id = "wines" style="color: #4a2545;">
+                <td class = "align-middle fw-bold" style="width: 40%; font-size: 18px;"><%= wines[i].Name %></td>
+                <%switch (wines[i].Tipology) {
+                  case 'red': %>
+                <td style="width: 5%"><img src="/images/red.png"></td>
+                  <%
+                    break
+                  case 'white':%>
+                <td style="width: 5%"><img src="/images/white.png"></td>
+                  <%
+                    break
+                  case 'rose':%>
+                <td style="width: 5%"><img src="/images/rose.png"></td>
+                  <%
+                    break
+                  case 'sparkling':%>
+                <td style="width: 5%"><img src="/images/sparkling.png"></td>
+                  <%
+                    break
+                }%>
+                <td class = "align-middle" style="width: 25%"><%= wines[i].Region %> (<%= wines[i].Country%>)</td>
+                <%switch (true) {
+                  case (wines[i].NumberOfRatings >= 10000): %>
+                <td class = "align-middle" style="width: 10%">
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                </td>         
+                  <%
+                    break
+                  case (wines[i].NumberOfRatings >= 5000): %>
+                <td class = "align-middle" style="width: 10%"> 
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                </td>            
+                  <%
+                    break
+                  case (wines[i].NumberOfRatings >= 1000): %>
+                <td class = "align-middle" style="width: 10%"> 
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                </td>              
+                  <%
+                    break
+                  case (wines[i].NumberOfRatings >= 500): %>
+                <td class = "align-middle" style="width: 10%"> 
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>   
+                </td>             
+                  <%
+                    break
+                  case (wines[i].NumberOfRatings >= 100): %>
+                <td class = "align-middle" style="width: 10%"> 
+                  <span class="fa fa-star" style="color:#ffe18f;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>         
+                </td>       
+                  <%
+                    break
+                  default: %>
+                <td class = "align-middle" style="width: 10%"> 
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                  <span class="fa fa-star" style="color:#824c71;"></span>
+                </td>                
+                <%}%>
+                <td class = "align-middle" style="width: 5%"><%= wines[i].Rating %></td>
+                <td class = "align-middle" style="width: 10%"><%= wines[i].Price.toString().replace('.',',')%> €</td>
+                <td class = "align-middle" style="width: 5%"><%= wines[i].Year.toString().replace('NaN','---')%></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script>
+      function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("sortTable");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+          switching = false;
+          rows = table.rows;
+          for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;
+          } else {
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
