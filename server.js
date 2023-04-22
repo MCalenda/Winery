@@ -1,41 +1,36 @@
-const express = require('express');
-const bodyParser= require('body-parser')
+require('dotenv').config();
 const MongoClient = require('mongodb').MongoClient
 
-const app = express()
-app.set('view engine', 'ejs')
-app.use(express.static("public"))
-app.use(bodyParser.urlencoded({ extended: true }))
+const connectionString = process.env.ATLAS_URI || "";
+const client = new MongoClient(connectionString);
 
-const db_url = 'mongodb://localhost:27017'
-const db_name = 'bd2'
-let db
+let conn = client.connect()
+  .then(() => {
+    console.log('Connected Successfully!')
+  })
+  .catch(error => console.log('Failed to connect!', error))
 
-MongoClient.connect(db_url, { useNewUrlParser: true }, (err, client) => {
-  if (err) return console.log(err)
-  db = client.db(db_name)
-  console.log(`Connected to MongoDB`)
-  console.log(`Database: ${db_name}`)
-  app.listen(3000, () => console.log('listening on 3000'))
-})
+var db = client.db('Winery')
 
-/* ---- Begin Logic ---- */
+const express = require('express');
+const app = express();
+app.set('view engine', 'ejs');
+app.use(express.static("public"));
+
+app.listen(3000, () => {console.log('Server Started at 3000')})
 
 app.get('/', (req, res) => {
-  db.collection('wine').aggregate([{
-    $match:{
-      NumberOfRatings : {$gt: 5000}}},{
-    $sample:{
-      size: 50}}])
+  db.collection('wine').aggregate([
+    {$match:{NumberOfRatings: {$gt: 5000}}},
+    {$sample:{ size: 50}}])
     .toArray().then(results => {
-      res.render('wines', { wines: results })
+      res.render('wines', {wines: results})
     })
 })
 
-
 app.get('/red', (req, res) => {
-  db.collection('wine').find({Tipology : "red"}).toArray().then(results => {
-    res.render('wines', { wines: results })
+  db.collection('wine').find({Tipology: "red"}).toArray().then(results => {
+    res.render('wines', {wines: results})
   })
 })
 
@@ -118,7 +113,7 @@ app.get('/topCountry', (req, res) => {
       "numRatings": { "$sum": "$NumberOfRatings" },
       "wines" : { $push: "$_id"}}},{
     $sort: { "numRatings": -1 } },]).toArray().then(results => {
-      db.collection("countriesPopularity").insert(results)
+      db.collection("countriesPopularity").insertOne(results)
       res.render('countries', { countries: results })
     })
 })
@@ -132,7 +127,7 @@ app.get('/topOrigins', (req, res) => {
       "country" : { $last: '$Country' },
       "wines" : { $push: "$_id"}}},{
     $sort: { "numRatings": -1 } },]).toArray().then(results => {
-      db.collection("originsPopularity").insert(results)
+      db.collection("originsPopularity").insertOne(results)
       res.render('origins', { origins: results })
     })
 })
@@ -156,14 +151,7 @@ app.get('/topWines', (req, res) => {
   })
 })
 
-
-var mapFunction = () => {
-  emit(this.Country, this.NumberOfRatings);
-};
-
-var reduceFunction = (country, ratings) => {
-  return Array.sum(ratings);
-};
+/*
 
 app.get('/topCountry', (req, res) => {
   db.collection('wine').mapReduce(mapFunction, reduceFunction,{out: "countryPopularity"})
@@ -173,5 +161,12 @@ app.get('/topCountry', (req, res) => {
     })
 })
 
+var mapFunction = () => {
+  emit(this.Country, this.NumberOfRatings);
+};
 
+var reduceFunction = (country, ratings) => {
+  return Array.sum(ratings);
+};
 
+*/
