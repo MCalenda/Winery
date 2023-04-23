@@ -1,0 +1,71 @@
+<div class="sticky-top vh-100 col-2 d-md-flex d-none flex-column text-center bg-dark text-warning">
+    <h4 class="fw-bold text-primary pt-2">Query Builder</h4>
+    <h6 class="fw-bold">I'm looking for:</h6>
+
+    <form class="text-start" action="/query" method="POST">
+        <fieldset class="form-group p-3">
+            <div class="form-check">
+                <input class="form-check-input" id ="radioRed" type="radio" name="tipology" value="red" required>
+                <label class="form-check-label" for="radioRed">Red</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id ="radioWhite" type="radio" name="tipology" value="white">
+                <label class="form-check-label" for="radioWhite">White</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id ="radioRose"type="radio" name="tipology" value="rose">
+                <label class="form-check-label" for="radioRose">Rose</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id ="radioSparkling" type="radio" name="tipology" value="sparkling">
+                <label class="form-check-label" for="radioSparkling">Sparkling</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id ="radioAll" type="radio" name="tipology" value="all">
+                <label class="form-check-label" for="radioAll">All</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group p-3">
+            <div class="form-check">
+                <input class="form-check-input" id="radioRating" type="radio" name="field" value="Rating" required>
+                <label class="form-check-label" for="radioRating">Rating</label><br>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="radioPrice" type="radio" name="field" value="Price">
+                <label class="form-check-label" for="radioPrice">Price</label><br>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="radioYear" type="radio" name="field" value="Year">
+                <label class="form-check-label" for="radioYear">Year</label>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group p-3">
+            <div class="form-check">
+                <input class="form-check-input" id="radioLess" type="radio" name="query_type" value="less" required>
+                <label class="form-check-label" for="radioLess" >Less than</label><br>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="radioMore" type="radio" name="query_type" value="more">
+                <label class="form-check-label" for="radioMore">More than</label><br>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="radioEqual" type="radio" name="query_type" value="equal">
+                <label class="form-check-label" for="radioEqual">Equal to</label>
+            </div>
+        </fieldset>
+
+        <div class="text-center">
+            <input type="number" name="value" min="0" max="500" value="100" oninput="this.form.amountRange.value=this.value"/><br>
+            <input type="range" class="form-range" name="amountRange" min="0" max="500" value="100" oninput="this.form.value.value=this.value"/>
+            <button class="btn btn-primary mt-3" type="submit" value="Query">search</button>
+        </div>
+    </form>
+
+    <div class="mt-auto pb-5">
+        <h6><a href="/topCountry">Most popular countries</a></h6>
+        <h6><a href="/topOrigins">Most popular regions</a></h6>
+        <h6><a href="/topWines">Wines Hall of Fame</a></h6>
+    </div>
+</div>

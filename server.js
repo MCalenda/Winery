@@ -117,7 +117,6 @@ app.get('/topCountry', (req, res) => {
       "numRatings": { "$sum": "$NumberOfRatings" },
       "wines" : { $push: "$_id"}}},{
     $sort: { "numRatings": -1 } },]).toArray().then(results => {
-      db.collection("countriesPopularity").insertOne(results)
       res.render('countries', { countries: results })
     })
 })
@@ -131,7 +130,6 @@ app.get('/topOrigins', (req, res) => {
       "country" : { $last: '$Country' },
       "wines" : { $push: "$_id"}}},{
     $sort: { "numRatings": -1 } },]).toArray().then(results => {
-      db.collection("originsPopularity").insertOne(results)
       res.render('origins', { origins: results })
     })
 })

@@ -1,0 +1,15 @@
+<nav class="navbar d-flex justify-content-center navbar-expand-lg bg-dark" style="z-index:1;">
+    <a class="btn btn-primary" href="/" >Home</a>
+    <form  method="POST" action="/search" class="form-inline px-4">
+        <input name="name" class="form-control text-center" type="search" placeholder="Search by name..." aria-label="Search">
+    </form>
+    <div class="nav-item dropdown">
+        <a class="btn btn-primary dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tipology</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown10">
+            <a class="dropdown-item" href="/red">Red</a>
+            <a class="dropdown-item" href="/white">White</a>
+            <a class="dropdown-item" href="/rose">Rose</a>
+            <a class="dropdown-item" href="/sparkling">Sparkling</a>
+        </div>
+    </div>
+</nav>

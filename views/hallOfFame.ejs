@@ -1,83 +1,21 @@
-<!-- countries.ejs -->
+<!-- hallOfFame.ejs -->
 <!DOCTYPE html>
-<html lang="it" class="h-100" >
-  <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-    crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta charset="UTF-8">
-    <title>Winery</title>
-  </head>
-  <body class="h-100 m-0" style="background-color:#824c71;">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col p-0">
-          <nav class="navbar navbar-expand-lg p-0" style="z-index:1; background-color:#4a2545;">
-            <div class="collapse navbar-collapse justify-content-md-center py-2" style="font-size: 18px;">
-              <ul class="navbar-nav align-middle fw-bold">
-                <li class="nav-item">
-                  <a class="nav-link" style="color:#ffe18f;" href="/" >Home</a>
-                </li>
-                <li class="nav-item mx-3">
-                  <form method="POST" action="/search" class="form-inline">
-                    <input name="name" class="form-control text-center" type="search" placeholder="Search by name..." aria-label="Search">
-                  </form>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle " href=""  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ffe18f;">Tipology</a>
-                  <div class="dropdown-menu" aria-labelledby="dropdown10" style="background-color:#4a2545;">
-                    <a class="dropdown-item" style="color:#ffe18f;" href="/red">Red</a>
-                    <a class="dropdown-item" style="color:#ffe18f;" href="/white">White</a>
-                    <a class="dropdown-item" style="color:#ffe18f;" href="/rose">Rose</a>
-                    <a class="dropdown-item" style="color:#ffe18f;" href="/sparkling">Sparkling</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-      <div class="row fw-bold text-center" style="background-color:#824c71; color:#ffe18f; font-size: 34px;">
-        <div class="col" style="margin-top: 10%;">
-          <div class = "rounded p-5" style="background-color:#4a2545;">
-            <div>
-              <p>Most popular wine</p>
-            </div>
-            <div class = "mt-5" style="font-size: 24px;">
-              <div class = "mb-5 py-3 rounded-circle border border-warning" style="background-color:#824c71;">
-                <%switch (mostPopular.Tipology) {
-                  case 'red': %>
-                <img src="/img/red.png">
-                  <%
-                    break
-                  case 'white':%>
-                <img src="/img/white.png">
-                  <%
-                    break
-                  case 'rose':%>
-                <img src="/img/rose.png">
-                  <%
-                    break
-                  case 'sparkling':%>
-                <img src="/img/sparkling.png">
-                  <%
-                    break
-                }%>
-                <p><%= mostPopular.Name%></p>
-              </div>
-              <p><%= mostPopular.NumberOfRatings%> ratings</p>
-              <p><%= mostPopular.Price%> €</p>
-            </div>
-          </div>
-        </div>
-        <div class="col" style="margin-top: 10%;">
-          <div class = "rounded p-5" style="background-color:#4a2545;">
-            <div>
-              <p>Most expensive wine</p>
-            </div>
-            <div class = "mt-5" style="font-size: 24px;">
-              <div class = "mb-5 py-3 rounded-circle border border-warning" style="background-color:#824c71;">
+<html lang="it">
+
+  <%- include ('include/head.ejs') %>
+
+  <body class="bg-dark vh-100">
+
+    <div class="container-fluid h-100 d-flex flex-column flex-grow-1 p-0">
+
+      <%- include ('include/navbar.ejs') %>
+
+      <div class="row flex-fill text-warning text-center">
+        <div class="col d-flex">
+          <div class="my-auto p-5">
+            <h4>Most expensive wine</h4>
+            <div class = "mt-5">
+              <div class = "mb-5 p-5 rounded-circle border border-warning" style="background-color:#824c71;">
                 <%switch (mostExpensive.Tipology) {
                   case 'red': %>
                 <img src="/img/red.png">
@@ -103,13 +41,12 @@
             </div>
           </div>
         </div>
-        <div class="col" style="margin-top: 10%;">
-          <div class = "rounded p-5" style="background-color:#4a2545;">
-            <div>
-              <p>Cheapest wine</p>
-            </div>
-            <div class = "mt-5" style="font-size: 24px;">
-              <div class = "mb-5 py-3 rounded-circle border border-warning" style="background-color:#824c71;">
+
+        <div class="col d-flex">
+          <div class="my-auto p-5">
+            <h4>Cheapest wine</h4>
+            <div class = "mt-5">
+              <div class = "mb-5 p-5 rounded-circle border border-warning" style="background-color:#824c71;">
                 <%switch (cheapest.Tipology) {
                   case 'red': %>
                 <img src="/img/red.png">
@@ -135,13 +72,43 @@
             </div>
           </div>
         </div>
-        <div class="col" style="margin-top: 10%;">
-          <div class = "rounded p-5" style="background-color:#4a2545;">
-            <div>
-              <p>Best wine</p>
+
+        <div class="col d-flex">
+          <div class="my-auto p-5">
+            <h4>Most popular wine</h4>
+            <div class = "mt-5">
+              <div class = "mb-5 p-5 rounded-circle border border-warning" style="background-color:#824c71;">
+                <%switch (mostPopular.Tipology) {
+                case 'red': %>
+                <img src="/img/red.png">
+                <%
+                  break
+                case 'white':%>
+                <img src="/img/white.png">
+                <%
+                  break
+                case 'rose':%>
+                <img src="/img/rose.png">
+                <%
+                  break
+                case 'sparkling':%>
+                <img src="/img/sparkling.png">
+                <%
+                  break
+                }%>
+                <p><%= mostPopular.Name%></p>
+              </div>
+              <p><%= mostPopular.NumberOfRatings%> ratings</p>
+              <p><%= mostPopular.Price%> €</p>
             </div>
-            <div class = "mt-5" style="font-size: 24px;">
-              <div class = "mb-5 py-3 rounded-circle border border-warning" style="background-color:#824c71;">
+          </div>
+        </div>
+
+        <div class="col d-flex">
+          <div class="my-auto p-5">
+            <h4>Best wine</h4>
+            <div class = "mt-5">
+              <div class = "mb-5 p-5 rounded-circle border border-warning" style="background-color:#824c71;">
                 <%switch (best.Tipology) {
                   case 'red': %>
                 <img src="/img/red.png">
@@ -169,46 +136,6 @@
         </div>
       </div>
     </div>
-    <script>
-      function sortTable(n) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("sortTable");
-        switching = true;
-        dir = "asc";
-        while (switching) {
-          switching = false;
-          rows = table.rows;
-          for (i = 1; i < (rows.length - 1); i++) {
-            shouldSwitch = false;
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            if (dir == "asc") {
-              if (parseFloat(x.innerHTML.toLowerCase()) > parseFloat(y.innerHTML.toLowerCase())) {
-                shouldSwitch = true;
-                break;
-              }
-            } else if (dir == "desc") {
-              if (parseFloat(x.innerHTML.toLowerCase()) < parseFloat(y.innerHTML.toLowerCase())) {
-                shouldSwitch = true;
-                break;
-              }
-            }
-          }
-          if (shouldSwitch) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            switchcount ++;
-          } else {
-            if (switchcount == 0 && dir == "asc") {
-              dir = "desc";
-              switching = true;
-            }
-          }
-        }
-      }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <%- include ('include/script.ejs') %>
   </body>
 </html>
