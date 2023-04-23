@@ -33,7 +33,7 @@ Dataset used: https://www.kaggle.com/budnyak/wine-rating-and-price
 ## Deployment 
 Winery is deployed with Render at https://winery.onrender.com
 
-NOTE: only free plans are involved, hence, good performances are not guaranteed.
+NOTE: only free plans are involved, hence, good performances are not guaranteed, especially web app goes in freeze state after 15 minutes of no requests and the next one takes up to 30s of delay.  
 
 ## License
 
