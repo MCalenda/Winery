@@ -1,10 +1,10 @@
 <div align="center">
 
-[![winery.onrender](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=flat&up_color=green&up_message=online&url=https%3A%2F%2Fwinery.onrender.com%2F)](https://winery.onrender.com/)&nbsp;
+[![winery.onrender](https://img.shields.io/website?style=for-the-badge&url=https%3A%2F%2Fwinery.onrender.com)](https://winery.onrender.com)
 
-[![GitHub contributors](https://badgen.net/github/contributors/MCalenda/Winery)](https://GitHub.com/MCalenda/Winery/graphs/contributors)&nbsp;
-[![GitHub issues](https://badgen.net/github/issues/MCalenda/Winery)](https://GitHub.com/MCalenda/Winery/issues)&nbsp;
-[![GitHub forks](https://badgen.net/github/forks/MCalenda/Winery)](https://GitHub.com/MCalenda/Winery/fork)
+[![GitHub contributors](https://img.shields.io/github/contributors/MCalenda/Winery?style=for-the-badge)](https://GitHub.com/MCalenda/Winery/graphs/contributors)
+[![GitHub issues](https://img.shields.io/github/issues/MCalenda/Winery?style=for-the-badge)](https://GitHub.com/MCalenda/Winery/issues)
+[![GitHub forks](https://img.shields.io/github/forks/MCalenda/Winery?style=for-the-badge)](https://GitHub.com/MCalenda/Winery/fork)
 
 <img src="./public/img/logo.png" width=400>
 </div>
@@ -19,16 +19,16 @@ The project is developed for *Database II* course at [@Unisa](https://unisa.it)
 
 <div align= "center">
 
-![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=HTML5)&nbsp;
-![CSS3](https://img.shields.io/badge/-CSS3-05122A?style=flat&logo=CSS3&logoColor=1572B6)&nbsp;
-![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)&nbsp;
+![HTML5 Badge](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=for-the-badge)
+![CSS3 Badge](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=for-the-badge)
+![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=for-the-badge)
 
-![MongoDB](https://img.shields.io/badge/-MongoDB-05122A?style=flat&logo=mongodb)&nbsp;
-![Node.js](https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=node.js)&nbsp;
-![ExpressJS](https://img.shields.io/badge/Express.js-05122A?style=flat)&nbsp;
-![Bootstrap](https://img.shields.io/badge/-Bootstrap-05122A?style=flat&logo=Bootstrap&)
+![MongoDB Badge](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=fff&style=for-the-badge)
+![Node.js Badge](https://img.shields.io/badge/Node.js-393?logo=nodedotjs&logoColor=fff&style=for-the-badge)
+![Express Badge](https://img.shields.io/badge/Express-000?logo=express&logoColor=fff&style=for-the-badge)
+![Bootstrap Badge](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff&style=for-the-badge)
 
-[![Dataset](https://img.shields.io/badge/Dataset%20on-Kaggle-critical?labelColor=05122A)](https://www.kaggle.com/budnyak/wine-rating-and-price)
+[![Dataset](https://img.shields.io/badge/Dataset%20on-Kaggle-critical?style=for-the-badge)](https://www.kaggle.com/budnyak/wine-rating-and-price)
 
 </div>
 
